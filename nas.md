@@ -83,6 +83,18 @@ sshd -t && (pkill -HUP sshd 2>/dev/null || /usr/sbin/sshd -e)
 
 ```
 
+or save as shortcut
+```bash
+ALIAS='alias run-ssh="sudo sh -c '\''sshd -t && (pkill -HUP sshd 2>/dev/null || /usr/sbin/sshd -e)'\''"'; \
+echo "$ALIAS" | sudo tee /etc/profile.d/run-ssh.sh >/dev/null && \
+( grep -qxF "$ALIAS" /etc/bash.bashrc || echo "$ALIAS" | sudo tee -a /etc/bash.bashrc >/dev/null ) && \
+. /etc/profile.d/run-ssh.sh && \
+. /etc/bash.bashrc
+
+run-ssh
+
+```
+
 
 ### ssh
 
